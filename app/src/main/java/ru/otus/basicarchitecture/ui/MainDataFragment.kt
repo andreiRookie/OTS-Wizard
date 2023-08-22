@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import ru.otus.basicarchitecture.R
 import ru.otus.basicarchitecture.databinding.UserDataLayoutBinding
+import ru.otus.basicarchitecture.util.EditTextDateMask
 import ru.otus.basicarchitecture.viewmodel.Action
 import ru.otus.basicarchitecture.viewmodel.WizardViewModel
 import ru.otus.basicarchitecture.viewmodel.Event
@@ -46,7 +47,7 @@ class MainDataFragment : Fragment() {
 
             nameOrCountryEditText.addTextChangedListener(textWatcher)
             surnameOrCityEditText.addTextChangedListener(textWatcher)
-            ageOrAddressEditText.addTextChangedListener(ageFieldTextWatcher)
+            EditTextDateMask(ageOrAddressEditText).startListen()
 
             ageOrAddressEditText.inputType = InputType.TYPE_CLASS_DATETIME
             ageOrAddressEditText.filters = arrayOf(InputFilter.LengthFilter(10))
@@ -147,58 +148,6 @@ class MainDataFragment : Fragment() {
     private val textWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        override fun afterTextChanged(s: Editable?) {
-            setNextButtonState()
-        }
-    }
-
-    private val ageFieldTextWatcher = object : TextWatcher {
-        val firstDividerPosition = 2
-        val secondDividerPosition = 5
-        val maxTextLength = 10
-
-        var isEdited = false
-        val divider = "."
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            if (isEdited) {
-                isEdited = false
-                return
-            }
-
-            var currText = getText()
-
-            currText = handleDateDivider(currText, firstDividerPosition, start, before)
-            currText = handleDateDivider(currText, secondDividerPosition, start, before)
-
-            isEdited = true
-            binding.ageOrAddressEditText.setText(currText)
-            binding.ageOrAddressEditText.setSelection(binding.ageOrAddressEditText.text.length)
-        }
-
-        private fun getText(): String {
-            return if (binding.ageOrAddressEditText.text.length >= maxTextLength)
-                binding.ageOrAddressEditText.text.toString().substring(0, maxTextLength)
-            else
-                binding.ageOrAddressEditText.text.toString()
-        }
-
-        private fun handleDateDivider(
-            currText: String,
-            dividerPosition: Int,
-            start: Int,
-            before: Int
-        ): String {
-            if (currText.length == dividerPosition) {
-                return if (before <= dividerPosition && start < dividerPosition)
-                    currText + divider
-                else
-                    currText.dropLast(1)
-            }
-            return currText
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun afterTextChanged(s: Editable?) {
             setNextButtonState()
         }
