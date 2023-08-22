@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp">
+
+    <EditText
+        android:id="@+id/name_or_country_edit_text"
+        android:layout_width="260dp"
+        android:layout_height="80dp"
+        android:layout_margin="24dp"
+        style="@style/edit_text"
+        tools:hint="Name/Country"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/edit_text_padding_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/surname_or_city_edit_text"
+        android:layout_width="260dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="12dp"
+        android:inputType="text"
+        tools:hint="Surname/City"
+        style="@style/edit_text"
+        android:paddingHorizontal="@dimen/edit_text_padding_8dp"
+        android:layout_margin="24dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_or_country_edit_text" />
+
+    <EditText
+        android:id="@+id/age_or_address_edit_text"
+        android:layout_width="260dp"
+        android:layout_height="80dp"
+        android:inputType="text"
+        android:includeFontPadding="true"
+        tools:hint="Age/Address"
+        style="@style/edit_text"
+        android:layout_margin="24dp"
+        android:paddingHorizontal="@dimen/edit_text_padding_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/surname_or_city_edit_text" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button"
+        style="@style/next_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
