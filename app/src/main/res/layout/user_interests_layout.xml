@@ -2,75 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="24dp">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="24dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/go_to_summary_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/interest_chip_style"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-
-<!--            style="@style/interest_chip_style"-->
-
-<!--            android:text="Hiking"/>-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Travel" />-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_3"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-
-<!--            android:text="Programming" />-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_4"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Books" />-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_5"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Playing double bass" />-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_6"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Watching movies" />-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_7"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Cycling" />-->
-
-<!--        <com.google.android.material.chip.Chip-->
-<!--            android:id="@+id/chip_8"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            style="@style/interest_chip_style"-->
-<!--            android:text="Theatre" />-->
-
-    </com.google.android.material.chip.ChipGroup>
-
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            style="@style/interest_chip_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </ScrollView>
 
     <Button
         android:id="@+id/go_to_summary_button"
@@ -78,8 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/summary"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

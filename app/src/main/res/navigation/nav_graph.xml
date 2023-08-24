@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainDataFragment"
-        android:name="ru.otus.basicarchitecture.ui.MainDataFragment"
+        android:name="ru.otus.basicarchitecture.ui.main.MainDataFragment"
         android:label="MainDataFragment"
         tools:layout="@layout/user_data_layout">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/addressDataFragment"
-        android:name="ru.otus.basicarchitecture.ui.AddressDataFragment"
+        android:name="ru.otus.basicarchitecture.ui.address.AddressDataFragment"
         android:label="AddressDataFragment"
         tools:layout="@layout/user_data_layout">
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/interestsDataFragment"
-        android:name="ru.otus.basicarchitecture.ui.InterestsDataFragment"
+        android:name="ru.otus.basicarchitecture.ui.interests.InterestsDataFragment"
         android:label="InterestsFragment"
         tools:layout="@layout/user_interests_layout">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/summaryFragment"
-        android:name="ru.otus.basicarchitecture.ui.SummaryFragment"
+        android:name="ru.otus.basicarchitecture.ui.summary.SummaryFragment"
         android:label="SummaryFragment"
         tools:layout="@layout/user_summary_layout"/>
 </navigation>

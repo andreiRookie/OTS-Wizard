@@ -1,4 +1,4 @@
-package ru.otus.basicarchitecture.dto
+package ru.otus.basicarchitecture.wizardcache
 
 data class WizardUserData(
     val id: Long = 0,
@@ -8,5 +8,5 @@ data class WizardUserData(
     val country: String= "",
     val city: String= "",
     val address: String= "",
-    val interests: Set<String> = emptySet()
+    val checkedInterests: List<String> = emptyList()
 )
