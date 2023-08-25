@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import ru.otus.basicarchitecture.R
 import ru.otus.basicarchitecture.databinding.UserInterestsLayoutBinding
+import ru.otus.basicarchitecture.di.InterestsFragComponent
 import ru.otus.basicarchitecture.di.appComponent
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ class InterestsDataFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        context.appComponent.inject(this)
+        InterestsFragComponent.create(context.appComponent).inject(this)
     }
 
     override fun onCreateView(

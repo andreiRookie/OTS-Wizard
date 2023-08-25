@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.otus.basicarchitecture.R
 import ru.otus.basicarchitecture.databinding.UserDataLayoutBinding
+import ru.otus.basicarchitecture.di.MainFragComponent
 import ru.otus.basicarchitecture.di.appComponent
 import ru.otus.basicarchitecture.util.EditTextDateMask
 import ru.otus.basicarchitecture.util.WizardTextWatcher
@@ -26,7 +27,7 @@ class MainDataFragment : Fragment() {
     lateinit var viewModel: MainFragViewModel
 
     override fun onAttach(context: Context) {
-        context.appComponent.inject(this)
+        MainFragComponent.create(context.appComponent).inject(this)
         super.onAttach(context)
     }
 

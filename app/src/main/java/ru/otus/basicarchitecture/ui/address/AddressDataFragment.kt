@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.otus.basicarchitecture.R
 import ru.otus.basicarchitecture.databinding.UserDataLayoutBinding
+import ru.otus.basicarchitecture.di.AddressFragComponent
 import ru.otus.basicarchitecture.di.appComponent
 import ru.otus.basicarchitecture.util.WizardTextWatcher
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class AddressDataFragment : Fragment() {
     lateinit var viewModel: AddressFragViewModel
 
     override fun onAttach(context: Context) {
-        context.appComponent.inject(this)
+        AddressFragComponent.create(context.appComponent).inject(this)
         super.onAttach(context)
     }
 
