@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
+import ru.otus.basicarchitecture.MainActivity
 import ru.otus.basicarchitecture.databinding.UserSummaryLayoutBinding
 import ru.otus.basicarchitecture.di.SummaryFragComponent
-import ru.otus.basicarchitecture.di.appComponent
 import javax.inject.Inject
 
 class SummaryFragment : Fragment() {
@@ -22,7 +22,7 @@ class SummaryFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        SummaryFragComponent.create(context.appComponent).inject(this)
+        SummaryFragComponent.create((activity as MainActivity).activityComponent).inject(this)
     }
 
     override fun onCreateView(

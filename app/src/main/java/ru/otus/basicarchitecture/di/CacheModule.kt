@@ -4,12 +4,11 @@ import dagger.Binds
 import dagger.Module
 import ru.otus.basicarchitecture.wizardcache.WizardCache
 import ru.otus.basicarchitecture.wizardcache.WizardCacheImpl
-import javax.inject.Singleton
 
 @Module
 interface CacheModule {
 
-    @Singleton
+    @ActivityScope
     @Binds
     fun bindsCache(impl: WizardCacheImpl): WizardCache
 }

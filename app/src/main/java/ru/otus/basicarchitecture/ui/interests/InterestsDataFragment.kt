@@ -9,10 +9,10 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
+import ru.otus.basicarchitecture.MainActivity
 import ru.otus.basicarchitecture.R
 import ru.otus.basicarchitecture.databinding.UserInterestsLayoutBinding
 import ru.otus.basicarchitecture.di.InterestsFragComponent
-import ru.otus.basicarchitecture.di.appComponent
 import javax.inject.Inject
 
 class InterestsDataFragment : Fragment() {
@@ -25,7 +25,7 @@ class InterestsDataFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        InterestsFragComponent.create(context.appComponent).inject(this)
+        InterestsFragComponent.create((activity as MainActivity).activityComponent).inject(this)
     }
 
     override fun onCreateView(
