@@ -8,9 +8,10 @@ import ru.otus.basicarchitecture.di.appComponent
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var activityComponent: ActivityComponent
+    private lateinit var _activityComponent: ActivityComponent
+    val activityComponent: ActivityComponent get() = _activityComponent
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent = DaggerActivityComponent.factory().create(appComponent, this)
+        _activityComponent = DaggerActivityComponent.factory().create(appComponent, this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
