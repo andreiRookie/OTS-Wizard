@@ -4,7 +4,8 @@ buildscript {
             'fragments': '1.5.7',
             'navigation': '2.6.0',
             'lifecycle': '2.6.0',
-            'dagger': '2.45'
+            'dagger': '2.45',
+            'hilt': '2.44'
 
     ]
     ext.deps = [
@@ -16,6 +17,9 @@ buildscript {
 
             'dagger': "com.google.dagger:dagger:${versions.dagger}",
             'dagger_compiler': "com.google.dagger:dagger-compiler:${versions.dagger}",
+
+            'hilt': "com.google.dagger:hilt-android:${versions.hilt}",
+            'hilt_compiler': "com.google.dagger:hilt-compiler:${versions.hilt}"
     ]
 }
 
@@ -23,4 +27,5 @@ plugins {
     id 'com.android.application' version '8.0.0' apply false
     id 'com.android.library' version '8.0.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
+    id 'com.google.dagger.hilt.android' version '2.44' apply false
 }

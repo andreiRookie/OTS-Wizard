@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
+//    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -49,4 +50,7 @@ dependencies {
     implementation deps.livedata
     implementation deps.dagger
     kapt deps.dagger_compiler
+
+//    implementation deps.hilt
+//    kapt deps.hilt_compiler
 }

@@ -7,7 +7,8 @@ class WizardCacheImpl @Inject constructor() : WizardCache {
     private val interests = listOf("Hiking", "Programming",
         "Travel", "Walking", "Cycling", "Theatre",
         "Playing double bass", "Movies", "Reading books",
-        "Running", "Photography", "Bouldering", "Nightclubs")
+        "Running", "Photography", "Bouldering", "Nightclubs",
+        "Bikepacking trips", "Football", "Boxing", "Self education")
 
     private var data = WizardUserData()
 
