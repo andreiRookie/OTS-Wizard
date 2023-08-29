@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
-//    id 'com.google.dagger.hilt.android'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -48,9 +48,10 @@ dependencies {
     implementation deps.navigation
     implementation deps.viewmodel
     implementation deps.livedata
-    implementation deps.dagger
-    kapt deps.dagger_compiler
 
-//    implementation deps.hilt
-//    kapt deps.hilt_compiler
+//    implementation deps.dagger
+//    kapt deps.dagger_compiler
+
+    implementation deps.hilt
+    kapt deps.hilt_compiler
 }

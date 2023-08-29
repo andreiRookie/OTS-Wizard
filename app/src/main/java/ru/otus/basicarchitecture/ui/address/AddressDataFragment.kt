@@ -1,6 +1,5 @@
 package ru.otus.basicarchitecture.ui.address
 
-import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -8,26 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import ru.otus.basicarchitecture.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
 import ru.otus.basicarchitecture.databinding.UserDataLayoutBinding
-import ru.otus.basicarchitecture.di.AddressFragComponent
 import ru.otus.basicarchitecture.util.WizardTextWatcher
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddressDataFragment : Fragment() {
 
     private var _binding: UserDataLayoutBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var viewModel: AddressFragViewModel
-
-    override fun onAttach(context: Context) {
-        AddressFragComponent.create((activity as MainActivity).activityComponent).inject(this)
-        super.onAttach(context)
-    }
+    private val viewModel: AddressFragViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

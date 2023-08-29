@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicArchitecture"
         tools:targetApi="31"
-        android:name=".di.WizardApp">
+        android:name=".di.HiltWizardApp">
         <activity
             android:name=".MainActivity"
             android:exported="true">

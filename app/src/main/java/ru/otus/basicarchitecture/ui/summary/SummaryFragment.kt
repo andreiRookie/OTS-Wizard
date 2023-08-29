@@ -1,29 +1,22 @@
 package ru.otus.basicarchitecture.ui.summary
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.chip.Chip
-import ru.otus.basicarchitecture.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.databinding.UserSummaryLayoutBinding
-import ru.otus.basicarchitecture.di.SummaryFragComponent
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class SummaryFragment : Fragment() {
 
     private var _binding: UserSummaryLayoutBinding? = null
     private val binding: UserSummaryLayoutBinding get() = _binding!!
 
-    @Inject
-    lateinit var viewModel: SummaryFragViewModel
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        SummaryFragComponent.create((activity as MainActivity).activityComponent).inject(this)
-    }
+    private val viewModel: SummaryFragViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

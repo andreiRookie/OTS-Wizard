@@ -3,9 +3,11 @@ package ru.otus.basicarchitecture.ui.interests
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.otus.basicarchitecture.wizardcache.WizardCache
 import javax.inject.Inject
 
+@HiltViewModel
 class InterestsFragViewModel @Inject constructor(
     private val cache: WizardCache
 ) : ViewModel() {
