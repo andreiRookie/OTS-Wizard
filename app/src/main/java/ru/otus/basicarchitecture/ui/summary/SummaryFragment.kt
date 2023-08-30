@@ -40,7 +40,7 @@ class SummaryFragment : Fragment() {
             namePlaceholder.text = state.name
             surnamePlaceholder.text = state.surname
             dobPlaceholder.text = state.dob
-            addressPlaceholder.text = state.fullAddress
+            addressPlaceholder.text = state.address
 
             state.interests.forEach {
                 val chip = Chip(context)

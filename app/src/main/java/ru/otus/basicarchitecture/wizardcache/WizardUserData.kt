@@ -5,8 +5,6 @@ data class WizardUserData(
     val name: String = "",
     val surname: String= "",
     val dateOfBirth: String= "",
-    val country: String= "",
-    val city: String= "",
     val address: String= "",
     val checkedInterests: List<String> = emptyList()
 )

@@ -22,8 +22,8 @@ class WizardCacheImpl @Inject constructor() : WizardCache {
         data = data.copy(name = name, surname = surname, dateOfBirth = dateOfBirth)
     }
 
-    override fun updateAddress(country: String, city: String, address: String) {
-        data = data.copy(country =country, city = city, address = address)
+    override fun updateAddress(address: String) {
+        data = data.copy(address = address)
     }
 
     override fun updateInterests(interests: List<String>) {

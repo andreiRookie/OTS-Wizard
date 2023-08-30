@@ -1,7 +1,6 @@
 package ru.otus.basicarchitecture.ui.address
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.otus.basicarchitecture.R
-import ru.otus.basicarchitecture.databinding.UserDataLayoutBinding
+import ru.otus.basicarchitecture.databinding.UserAddressLayoutBinding
 import ru.otus.basicarchitecture.util.WizardTextWatcher
 
 @AndroidEntryPoint
 class AddressDataFragment : Fragment() {
 
-    private var _binding: UserDataLayoutBinding? = null
+    private var _binding: UserAddressLayoutBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: AddressFragViewModel by viewModels()
@@ -27,7 +26,7 @@ class AddressDataFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = UserDataLayoutBinding.inflate(inflater, container, false)
+        _binding = UserAddressLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,17 +34,15 @@ class AddressDataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            nameOrCountryEditText.hint = getString(R.string.country)
-            surnameOrCityEditText.hint = getString(R.string.city)
-            ageOrAddressEditText.hint = getString(R.string.address)
-            ageOrAddressEditText.inputType = InputType.TYPE_CLASS_TEXT
-
-            WizardTextWatcher(nameOrCountryEditText).startListen { setButtonState() }
-            WizardTextWatcher(surnameOrCityEditText).startListen { setButtonState() }
-            WizardTextWatcher(ageOrAddressEditText).startListen { setButtonState() }
+            addressEditText.hint = getString(R.string.address)
+            WizardTextWatcher(addressEditText).startListen { setButtonState() }
 
             nextButton.setOnClickListener {
-                viewModel.onNextButtonClick(nextButton.isSelected)
+                if (!it.isSelected) {
+                    showToast("Enter address")
+                    return@setOnClickListener
+                }
+                viewModel.openInterestsFragment()
             }
         }
 
@@ -54,42 +51,22 @@ class AddressDataFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             handleState(state)
         }
-        viewModel.event.observe(viewLifecycleOwner) { event ->
-            handleEvent(event)
+
+        viewModel.navigateToInterestsFrag.observe(viewLifecycleOwner) {
+            viewModel.updateAddressData(binding.addressEditText.text.toString())
+            findNavController().navigate(R.id.action_addressDataFragment_to_interestsDataFragment)
         }
     }
 
     private fun handleState(state: AddressFragState) {
         binding.apply {
-            nameOrCountryEditText.setText(state.country)
-            surnameOrCityEditText.setText(state.city)
-            ageOrAddressEditText.setText(state.address)
-            nextButton.isSelected = state.isButtonEnabled
-        }
-    }
-
-    private fun handleEvent(event: AddressFragEvent) {
-        when (event) {
-            is AddressFragEvent.Error -> {
-                showToast(event.message)
-            }
-            is AddressFragEvent.Success -> {
-                viewModel.updateAddressData(
-                    binding.nameOrCountryEditText.text.toString(),
-                    binding.surnameOrCityEditText.text.toString(),
-                    binding.ageOrAddressEditText.text.toString(),
-                )
-                findNavController().navigate(R.id.action_addressDataFragment_to_interestsDataFragment)
-            }
-            is AddressFragEvent.Empty -> {}
+            addressEditText.setText(state.address)
         }
     }
 
     private fun setButtonState() {
         binding.apply {
-            nextButton.isSelected = ageOrAddressEditText.text.isNotEmpty()
-                    && nameOrCountryEditText.text.isNotEmpty()
-                    && surnameOrCityEditText.text.isNotEmpty()
+            nextButton.isSelected = addressEditText.text.isNotEmpty()
         }
     }
 

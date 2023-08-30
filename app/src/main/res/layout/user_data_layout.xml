@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/name_or_country_edit_text"
         android:layout_width="260dp"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/edit_text_height_80dp"
         android:layout_margin="24dp"
         style="@style/edit_text"
         tools:hint="Name/Country"
@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/surname_or_city_edit_text"
         android:layout_width="260dp"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/edit_text_height_80dp"
         android:layout_marginTop="12dp"
         android:inputType="text"
         tools:hint="Surname/City"
@@ -37,7 +37,7 @@
     <EditText
         android:id="@+id/age_or_address_edit_text"
         android:layout_width="260dp"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/edit_text_height_80dp"
         android:inputType="text"
         android:includeFontPadding="true"
         tools:hint="Age/Address"

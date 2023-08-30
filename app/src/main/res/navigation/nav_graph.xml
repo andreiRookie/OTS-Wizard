@@ -19,7 +19,7 @@
         android:id="@+id/addressDataFragment"
         android:name="ru.otus.basicarchitecture.ui.address.AddressDataFragment"
         android:label="AddressDataFragment"
-        tools:layout="@layout/user_data_layout">
+        tools:layout="@layout/user_address_layout">
         <action
             android:id="@+id/action_addressDataFragment_to_interestsDataFragment"
             app:destination="@id/interestsDataFragment" />

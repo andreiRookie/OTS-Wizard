@@ -4,6 +4,6 @@ data class SummaryFragState(
     val name: String ="",
     val surname: String = "",
     val dob: String = "",
-    val fullAddress: String = "",
+    val address: String = "",
     val interests: List<String> = emptyList()
 )

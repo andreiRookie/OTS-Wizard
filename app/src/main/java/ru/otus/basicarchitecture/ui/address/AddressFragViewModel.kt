@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ru.otus.basicarchitecture.util.SingleLiveEvent
 import ru.otus.basicarchitecture.wizardcache.WizardCache
 import javax.inject.Inject
 
@@ -15,8 +16,8 @@ class AddressFragViewModel @Inject constructor(
     private val _state = MutableLiveData(AddressFragState())
     val state: LiveData<AddressFragState> get() = _state
 
-    private val _event = MutableLiveData<AddressFragEvent>()
-    val event: LiveData<AddressFragEvent> get() = _event
+    private val _navigateToInterestsFrag = SingleLiveEvent<Unit>()
+    val navigateToInterestsFrag: LiveData<Unit> get() = _navigateToInterestsFrag
 
     init {
         getCurrentData()
@@ -24,32 +25,15 @@ class AddressFragViewModel @Inject constructor(
 
     fun getCurrentData() {
         cache.getUserData().also { data ->
-            _state.value = _state.value?.copy(
-                country = data.country,
-                city = data.city,
-                address = data.address,
-                isButtonEnabled = data.country.isNotEmpty()
-                        && data.city.isNotEmpty()
-                        && data.address.isNotEmpty()
-            )
+            _state.value = _state.value?.copy(address = data.address)
         }
     }
 
-    fun updateAddressData(country: String, city: String, address: String) {
-        cache.updateAddress(country, city, address)
+    fun openInterestsFragment() {
+        _navigateToInterestsFrag.call()
     }
 
-    fun onNextButtonClick(isButtonEnabled: Boolean) {
-        if (isButtonEnabled) {
-            _event.value = AddressFragEvent.Success
-            onEventHandled()
-        } else {
-            _event.value = AddressFragEvent.Error("Enter country, city, address")
-            onEventHandled()
-        }
-    }
-
-    private fun onEventHandled() {
-        _event.value = AddressFragEvent.Empty
+    fun updateAddressData(address: String) {
+        cache.updateAddress(address)
     }
 }

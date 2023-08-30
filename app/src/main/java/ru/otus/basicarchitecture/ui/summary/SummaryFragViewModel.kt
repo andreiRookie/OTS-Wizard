@@ -25,12 +25,9 @@ class SummaryFragViewModel @Inject constructor(
                 name = data.name,
                 surname = data.surname,
                 dob = data.dateOfBirth,
-                fullAddress = concatenateAddress(data.country, data.city, data.address),
+                address = data.address,
                 interests = data.checkedInterests
             )
         }
-    }
-    private fun concatenateAddress(country: String, city: String, address: String): String {
-        return "$country, $city, $address"
     }
 }
