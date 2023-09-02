@@ -11,7 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import ru.otus.basicarchitecture.domain.GetAddressSuggestionUseCase
 import ru.otus.basicarchitecture.network.AuthInterceptor
+import ru.otus.basicarchitecture.network.DaDataRepository
 import ru.otus.basicarchitecture.network.DaDataService
 import java.util.concurrent.TimeUnit
 
@@ -54,5 +56,10 @@ class HiltNetworkModule {
 
     @Provides
     fun provideDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @Provides
+    fun provideGetSuggestionAddressUseCase(repository: DaDataRepository): GetAddressSuggestionUseCase {
+        return GetAddressSuggestionUseCase(repository)
+    }
 
 }

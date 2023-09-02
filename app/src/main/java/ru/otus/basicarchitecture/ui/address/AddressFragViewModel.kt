@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import ru.otus.basicarchitecture.network.DaDataRepository
+import ru.otus.basicarchitecture.domain.GetAddressSuggestionUseCase
 import ru.otus.basicarchitecture.util.SingleLiveEvent
 import ru.otus.basicarchitecture.wizardcache.WizardCache
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddressFragViewModel @Inject constructor(
     private val cache: WizardCache,
-    private val networkRepo: DaDataRepository
+    private val useCase: GetAddressSuggestionUseCase
 ) : ViewModel() {
 
     private val _state = MutableLiveData(AddressFragState())
@@ -40,7 +40,7 @@ class AddressFragViewModel @Inject constructor(
     fun loadSuggestedAddresses(query: String) {
         viewModelScope.launch {
             try {
-                val list = networkRepo.loadSuggestedAddresses(query)
+                val list = useCase.execute(query)
                 _suggestionState.value =
                     _suggestionState.value?.copy(suggestions = list)
 
