@@ -5,6 +5,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import ru.otus.basicarchitecture.network.DaDataRepository
+import ru.otus.basicarchitecture.network.DaDataRepositoryImpl
 import ru.otus.basicarchitecture.wizardcache.WizardCache
 import ru.otus.basicarchitecture.wizardcache.WizardCacheImpl
 
@@ -16,4 +18,9 @@ interface HiltCacheModule {
     @Binds
     @ActivityRetainedScoped
     fun bindsCache(impl: WizardCacheImpl): WizardCache
+
+    @Binds
+    @ActivityRetainedScoped
+    fun bindNetworkRepo(impl: DaDataRepositoryImpl): DaDataRepository
+
 }

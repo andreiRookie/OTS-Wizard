@@ -7,7 +7,7 @@
     android:layout_margin="24dp">
 
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/address_edit_text"
         android:layout_width="360dp"
         android:layout_height="@dimen/edit_text_height_80dp"
@@ -20,7 +20,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/next_button"/>
+        android:completionThreshold="2"
+        android:dropDownSelector="@color/blue"
+        android:dropDownHeight="240dp"
+        />
 
     <Button
         android:id="@+id/next_button"
