@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Filter
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -37,12 +38,24 @@ class AddressDataFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_dropdown_item_1line)
-        adapter.setNotifyOnChange(true)
+        adapter = object : ArrayAdapter<String>(requireActivity(), android.R.layout.simple_dropdown_item_1line) {
+            override fun getFilter(): Filter {
+                return object : Filter() {
+                    override fun performFiltering(constraint: CharSequence?): FilterResults? = null
+                    override fun publishResults(constraint: CharSequence?, results: FilterResults?) {}
+                }
+            }
+        }
 
         binding.apply {
             addressEditText.hint = getString(R.string.address)
             WizardTextWatcher(addressEditText).startListen { setButtonState() }
+
+            addressEditText.setAdapter(adapter)
+
+            addressEditText.doAfterTextChanged { input ->
+                viewModel.loadSuggestedAddresses(input.toString())
+            }
 
             nextButton.setOnClickListener {
                 if (!it.isSelected) {
@@ -57,30 +70,17 @@ class AddressDataFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             handleState(state)
         }
+        viewModel.suggestionState.observe(viewLifecycleOwner) { suggestionState ->
+            adapter.clear()
+            adapter.addAll(suggestionState.suggestions)
+        }
 
         viewModel.navigateToInterestsFrag.observe(viewLifecycleOwner) {
             viewModel.updateAddressData(binding.addressEditText.text.toString())
             findNavController().navigate(R.id.action_addressDataFragment_to_interestsDataFragment)
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-
-        binding.apply {
-            addressEditText.setAdapter(adapter)
-
-            addressEditText.doAfterTextChanged { input ->
-                viewModel.loadSuggestedAddresses(input.toString())
-            }
-        }
-
-        viewModel.suggestionState.observe(viewLifecycleOwner) { suggestionState ->
-            adapter.clear()
-            adapter.addAll(suggestionState.suggestions)
-        }
-    }
-
+giп
     private fun handleState(state: AddressFragState) {
         binding.apply {
             addressEditText.setText(state.address)
