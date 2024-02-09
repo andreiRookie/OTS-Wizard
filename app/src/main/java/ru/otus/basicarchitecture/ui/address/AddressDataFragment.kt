@@ -80,7 +80,7 @@ class AddressDataFragment : Fragment() {
             findNavController().navigate(R.id.action_addressDataFragment_to_interestsDataFragment)
         }
     }
-giп
+
     private fun handleState(state: AddressFragState) {
         binding.apply {
             addressEditText.setText(state.address)
