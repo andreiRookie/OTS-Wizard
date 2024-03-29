@@ -8,4 +8,5 @@ interface WizardCache {
     fun updateMainData(name: String, surname: String, dateOfBirth: String)
     fun updateAddress(address: String)
     fun updateInterests(interests: List<String>)
+    fun clearCache()
 }

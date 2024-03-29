@@ -29,4 +29,8 @@ class WizardCacheImpl @Inject constructor() : WizardCache {
     override fun updateInterests(interests: List<String>) {
         data = data.copy(checkedInterests = interests)
     }
+
+    override fun clearCache() {
+        data = WizardUserData()
+    }
 }
